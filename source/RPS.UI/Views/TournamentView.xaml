@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="RPS.UI.Views.TournamentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:converters="clr-namespace:RPS.UI.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Row="0" MinWidth="250" Grid.Column="0" Header="Tournament Status" Margin="10 10 13 10">
+            <GroupBox.Resources>
+                <converters:IsWinningMultiConverter x:Key="WinningBrushConverter" />
+            </GroupBox.Resources>
+            <Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding ShowTournamentWait, Converter={StaticResource BoolToVisConverter}}" >
+                    <TextBlock Text="Waiting for tournament to start..." Margin="5" />
+                    <ProgressBar IsIndeterminate="True" Width="175" Margin="5" Height="15"/>
+                </StackPanel>
+                <ListBox IsSynchronizedWithCurrentItem="True" x:Name="lstGames" ItemsSource="{Binding TournamentGames}" Visibility="{Binding ShowTournamentList, Converter={StaticResource BoolToVisConverter}}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.Background>
+                                    <MultiBinding Converter="{StaticResource WinningBrushConverter}">
+                                        <Binding Path="Player1" />
+                                        <Binding Path="Player2" />
+                                        <Binding Path="Player1Wins" />
+                                        <Binding Path="Player2Wins" />
+                                    </MultiBinding>
+                                </Grid.Background>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                
+                                <Label Grid.Row="0" Grid.Column="0" Content="Player" />
+                                <Label Grid.Row="0" Grid.Column="1" Content="Wins" />
+                                <Label Grid.Row="0" Grid.Column="2" Content="Ties" />
+
+                                <TextBlock Grid.Row="1" Margin="5 3" Grid.Column="0" Text="{Binding Player1}" />
+                                <TextBlock Grid.Row="1" Margin="5 3" Grid.Column="1" Text="{Binding Player1Wins}" />
+
+                                <TextBlock Grid.Row="2" Margin="5 3" Grid.Column="0" Text="{Binding Player2}" />
+                                <TextBlock Grid.Row="2" Margin="5 3" Grid.Column="1" Text="{Binding Player2Wins}" />
+
+                                <TextBlock Grid.Row="1" Margin="5 3" VerticalAlignment="Center" Grid.Column="2" Grid.RowSpan="2" Text="{Binding Ties}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </GroupBox>
+
+        <GridSplitter Grid.Column="0" Width="8" Margin="0 10 0 10" Background="{StaticResource WindowBackgroundBrush}" />
+        
+        <GroupBox Grid.Row="0" Grid.Column="1" Header="Current Game" Margin="5 10 10 10">
+            <GroupBox.Resources>
+                <converters:TurnResultMultiConverter x:Key="TurnMultiConverter" />
+            </GroupBox.Resources>
+            <ListBox IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=SelectedItem.Turns, ElementName=lstGames}" Background="#FFE52020">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource TurnMultiConverter}">
+                                    <Binding Path="Player1Move" />
+                                    <Binding Path="Player2Move" />
+                                    <Binding Path="Result" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,8 @@
+﻿<Window x:Class="RPS.UI.Views.XmppLogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Xmpp Log" Height="300" Width="300" Background="{StaticResource WindowBackgroundBrush}">
+    <Grid>
+        <ListBox ItemsSource="{Binding LogMessages}" />
+    </Grid>
+</Window>

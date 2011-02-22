@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37CE00A6-746B-4DEA-B213-E4BDCDCB56FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RPS.Common</RootNamespace>
+    <AssemblyName>RPS.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="agsXMPP">
+      <HintPath>..\..\binaries\agsXMPP.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bubbles.cs" />
+    <Compile Include="Dynamite.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GameBot\ErrorEventArgs.cs" />
+    <Compile Include="GameBot\GameBotCreatedEventArgs.cs" />
+    <Compile Include="GameBot\SingleGameBot.cs" />
+    <Compile Include="GameBot\GameOverEventArgs.cs" />
+    <Compile Include="GameBot\GameStartEventArgs.cs" />
+    <Compile Include="GameBot\RoundRobinTournamentManager.cs" />
+    <Compile Include="GameBot\TurnCompletedEventArgs.cs" />
+    <Compile Include="GameBot\TurnStartEventArgs.cs" />
+    <Compile Include="GameData.cs" />
+    <Compile Include="GameHelper.cs" />
+    <Compile Include="GameInfo.cs" />
+    <Compile Include="IPlayerBot.cs" />
+    <Compile Include="Messaging\GameOverMessage.cs" />
+    <Compile Include="Messaging\GameStartMessage.cs" />
+    <Compile Include="Messaging\MessageFactory.cs" />
+    <Compile Include="Messaging\PlayerMoveMessage.cs" />
+    <Compile Include="Messaging\RegisterMessage.cs" />
+    <Compile Include="Messaging\RegistrationCompleteMessage.cs" />
+    <Compile Include="Messaging\TournamentStartedMessage.cs" />
+    <Compile Include="Messaging\TurnResultMessage.cs" />
+    <Compile Include="Messaging\TurnStartMessage.cs" />
+    <Compile Include="MoveBase.cs" />
+    <Compile Include="MoveFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MoveNames.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NoMove.cs" />
+    <Compile Include="Paper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rock.cs" />
+    <Compile Include="Scissors.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="TurnData.cs" />
+    <Compile Include="TurnResult.cs" />
+    <Compile Include="Xmpp\GameOverEventArgs.cs" />
+    <Compile Include="Xmpp\RegisterEventArgs.cs" />
+    <Compile Include="GameBot\TournamentStartedEventArgs.cs" />
+    <Compile Include="Xmpp\TurnCompletedReceivedEventArgs.cs" />
+    <Compile Include="Xmpp\XmppHostBase.cs" />
+    <Compile Include="Xmpp\XmppTournamentManagerHost.cs" />
+    <Compile Include="Xmpp\XmppPlayerBotHost.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

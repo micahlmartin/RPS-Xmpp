@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="RPS.UI.Views.RegisterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Background="Transparent">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <GroupBox Header="Join Tournament" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding ShowJoinTournament, Converter={StaticResource BoolToVisConverter}}">
+            <GroupBox.Effect>
+                <DropShadowEffect />
+            </GroupBox.Effect>
+            <StackPanel>
+                <TextBlock Text="{Binding JoinTournamentErrorMessage}" Foreground="#FFFF3434" Grid.ColumnSpan="2" FontSize="14" Visibility="{Binding HasJoinTournamentError, Converter={StaticResource BoolToVisConverter}}" />
+
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Server" Margin="5" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding TournamentServerId, UpdateSourceTrigger=PropertyChanged}" Width="225" />
+
+                    <!--<Label Grid.Row="1" Grid.Column="0" Content="Tournament Id" Margin="5" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TournamentId, UpdateSourceTrigger=PropertyChanged}" Width="225" />-->
+
+                    <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding JoinTournamentCommand}" Content="Join" Width="50" Margin="5" Padding="5" />
+
+                    <!--<Label Grid.Row="2" Grid.Column="0" Content="Team Name" Margin="5" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TeamName, UpdateSourceTrigger=PropertyChanged}" Width="225" />-->
+
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding ShowTournamentLoadingProgress, Converter={StaticResource BoolToVisConverter}}">
+            <Label Content="Joining Tournament..." />
+            <ProgressBar Width="250" IsIndeterminate="True" Height="25" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

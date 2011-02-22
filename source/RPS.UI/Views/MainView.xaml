@@ -1,0 +1,34 @@
+﻿<Window x:Class="RPS.UI.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:RPS.UI.Views"
+        xmlns:views="clr-namespace:RPS.UI.Views"
+        xmlns:cal="http://www.codeplex.com/prism"
+        xmlns:local="clr-namespace:RPS.UI"
+        Title="{Binding WindowTitle}" Height="580" Width="700" Background="{StaticResource WindowBackgroundBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Exit" Command="{Binding ExitApplicationCommand}" />
+                <MenuItem Header="Xmpp Log" Command="{Binding OpenXmppLogViewCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <ContentControl Grid.Row="1" Name="MainRegion" cal:RegionManager.RegionName="{x:Static local:RegionNames.MainRegion}" />
+        
+        <!--<Border Visibility="{Binding ShowRegistration, Converter={StaticResource BoolToVisConverter}}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <view:RegisterView />
+        </Border>
+
+        <Border Grid.Row="1" Visibility="{Binding ShowTournamentView, Converter={StaticResource BoolToVisConverter}}">
+            <views:TournamentView  />
+        </Border>-->
+        
+    </Grid>
+</Window>
